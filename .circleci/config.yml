@@ -1,0 +1,14 @@
+version: 2.1
+executors:
+  my-executor:
+    docker:
+        - image: mcr.microsoft.com/playwright:v1.22.0-focal
+
+jobs:
+  build:
+    executor: my-executor
+    steps:
+           - checkout
+           - run:  npm install -D @playwright/test
+           - run: npx playwright install msedge
+           - run: npx playwright test
